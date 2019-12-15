@@ -1,4 +1,4 @@
-package models
+package actions
 
 // Data model for AddAction input
 // serialized JSON string -> JSON struct conversion
