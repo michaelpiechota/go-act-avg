@@ -1,5 +1,3 @@
-module go-act-avg
+module github.com/michaelpiechota/go-act-avg/pkg
 
-go 1.13
-
-require github.com/michaelpiechota/go-act-avg v0.0.0-20191215181531-fa5395ea7571 // indirect
+go 1.13.4
