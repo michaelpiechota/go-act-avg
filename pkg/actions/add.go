@@ -21,7 +21,7 @@ func AddAction(s string) error {
 
 	// TODO: Implementation docs for choosing to use mutex
 	// Using a mutex to synchronize access to "TempData" map
-	// during read/write ops
+	// during read/write ops.
 	var mutex = sync.RWMutex{}
 	mutex.Lock()
 

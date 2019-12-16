@@ -6,6 +6,7 @@ package actions
 // is the initial action; set average to current input time.
 // If an average exists, calculate the new average and update record.
 func updateAverage(input Input) error {
+	// grab latest, possibly empty
 	average := TempData[input.Action]
 
 	// check if an average exists
@@ -14,23 +15,22 @@ func updateAverage(input Input) error {
 			Average: float64(input.Time),
 			UnaryOpCounter: 1,
 		}
-
 		// update record with initial average
 		TempData[input.Action] = *initialAverage
 		return nil
+	} else {
+		// Calculate new average
+		na := average.Average + ((float64(input.Time) - average.Average) / float64(average.UnaryOpCounter + 1))
+
+		// create data object to update record
+		updateAverage := &ActionData{
+			Average: na,
+			UnaryOpCounter: average.UnaryOpCounter + 1,
+		}
+
+		// update record with updated average
+		TempData[input.Action] = *updateAverage
+
+		return nil
 	}
-
-	// Calculate new average
-	na := average.Average + ((float64(input.Time) - average.Average) / float64(average.UnaryOpCounter + 1))
-
-	// create data object to update record
-	updateAverage := &ActionData{
-		Average: na,
-		UnaryOpCounter: average.UnaryOpCounter + 1,
-	}
-
-	// update record with updated average
-	TempData[input.Action] = *updateAverage
-
-	return nil
 }

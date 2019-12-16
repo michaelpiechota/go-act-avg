@@ -9,7 +9,6 @@ type Input struct {
 
 // Data model for temp local data store.
 // Average will hold the average time.
-// Using float32
 // UnaryOpCounter tracks running total needed
 // for calculating average.
 // TODO: big.Float or float64 reasoning
