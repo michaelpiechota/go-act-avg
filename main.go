@@ -6,7 +6,8 @@ import (
 )
 
 func main (){
-	actions.AddAction(`{"action": "run", "time": 350}`)
+	actions.AddAction(`{"action":"jump", "time":100}`)
+	actions.AddAction(`{"action":"jump", "time":200}`)
 
 	fmt.Println("main works")
 

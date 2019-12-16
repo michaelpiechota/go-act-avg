@@ -20,14 +20,17 @@ func AddAction(s string) error {
 	}
 
 	// TODO: Implementation docs for choosing to use mutex
+	// Using a mutex to synchronize access to "TempData" map
+	// during read/write ops
 	var mutex = sync.RWMutex{}
 	mutex.Lock()
-	defer mutex.Unlock()
 
 	error := updateAverage(i)
 	if error != nil{
 		return errors.New("error calculating average")
 	}
+
+	mutex.Unlock()
 
 	return nil
 }

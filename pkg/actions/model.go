@@ -9,15 +9,16 @@ type Input struct {
 
 // Data model for temp local data store.
 // Average will hold the average time.
+// Using float32
 // UnaryOpCounter tracks running total needed
-// for calculating average
+// for calculating average.
 // TODO: big.Float or float64 reasoning
 type ActionData struct{
-	Average float32
+	Average float64
 	UnaryOpCounter int
 }
 
 type Stats struct {
 	Action string	`json:"action"`
-	Average float32	`json:"average"`
+	Average float64	`json:"average"`
 }

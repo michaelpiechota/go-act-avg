@@ -11,7 +11,7 @@ func updateAverage(input Input) error {
 	// check if an average exists
 	if (ActionData{}) == average {
 		initialAverage := &ActionData{
-			Average: float32(input.Time),
+			Average: float64(input.Time),
 			UnaryOpCounter: 1,
 		}
 
@@ -21,7 +21,7 @@ func updateAverage(input Input) error {
 	}
 
 	// Calculate new average
-	na := average.Average + ((float32(input.Time) - average.Average) / float32(average.UnaryOpCounter + 1))
+	na := average.Average + ((float64(input.Time) - average.Average) / float64(average.UnaryOpCounter + 1))
 
 	// create data object to update record
 	updateAverage := &ActionData{
