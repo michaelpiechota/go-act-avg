@@ -3,7 +3,7 @@ package actions
 import (
 	"encoding/json"
 	"errors"
-	"log"
+	"go.uber.org/zap"
 	"sync"
 )
 
@@ -11,12 +11,14 @@ import (
 // {"action":"string", "time":int}
 // and maintains an average time for each action.
 func AddAction(s string) error {
-	// instantiate input model
-	i := Input{}
+	svc := getService()
+	// uncomment for granular input logging
+	//svc.logger.Info("Action input received", zap.Any("Action", s))
+
 	// unmarshal serialized json into input model
-	err := json.Unmarshal([]byte(s), &i)
-	if err != nil{
-		log.Fatal("Failed to unmarshal input ", err)
+	err := json.Unmarshal([]byte(s), &svc.input)
+	if err != nil {
+		svc.logger.Fatal("failed to unmarshal input", zap.Error(err))
 	}
 
 	// TODO: Implementation docs for choosing to use mutex
@@ -25,8 +27,8 @@ func AddAction(s string) error {
 	var mutex = sync.RWMutex{}
 	mutex.Lock()
 
-	error := updateAverage(i)
-	if error != nil{
+	error := updateAverage(svc.input, *svc)
+	if error != nil {
 		return errors.New("error calculating average")
 	}
 
@@ -34,8 +36,3 @@ func AddAction(s string) error {
 
 	return nil
 }
-
-
-
-
-
