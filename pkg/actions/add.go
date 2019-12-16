@@ -13,7 +13,7 @@ import (
 func AddAction(s string) error {
 	svc := getService()
 	// uncomment for granular input logging
-	//svc.logger.Info("Action input received", zap.Any("Action", s))
+	svc.logger.Info("Action input received", zap.Any("Action", s))
 
 	// unmarshal serialized json into input model
 	err := json.Unmarshal([]byte(s), &svc.input)
