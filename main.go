@@ -1,10 +1,7 @@
 package main
 
-import (
-	"github.com/michaelpiechota/go-act-avg/actions"
-)
+import "github.com/michaelpiechota/go-act-avg/pkg/actions"
 
 func main (){
-	AddAction(`{"action": "run", "time": 350}`)
-
+	actions.AddAction(`{"action":"jump", "time":100}`)
 }
