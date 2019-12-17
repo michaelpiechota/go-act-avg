@@ -7,7 +7,7 @@ import (
 type Service struct {
 	logger *zap.Logger
 	input  Input
-	stats  Stats
+	stats  []Stats
 }
 
 func NewService() (*Service, error) {
@@ -18,9 +18,9 @@ func NewService() (*Service, error) {
 	// flushes buffer, if any
 	defer logger.Sync()
 
-	// instantiate input model
+	// instantiate models
 	i := Input{}
-	s := Stats{}
+	var s []Stats
 
 	svc := Service{
 		logger: logger,

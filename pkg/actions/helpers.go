@@ -1,7 +1,6 @@
 package actions
 
 import (
-	"go.uber.org/zap"
 	"log"
 )
 
@@ -45,7 +44,7 @@ func updateAverage(input Input, svc Service) error {
 		// update record with updated average
 		TempData[input.Action] = *updateAverage
 
-		svc.logger.Info("Current data", zap.Any("TempData", TempData))
+		//svc.logger.Info("Current data", zap.Any("TempData", TempData))
 
 		return nil
 	}
