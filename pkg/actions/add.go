@@ -13,12 +13,13 @@ import (
 func AddAction(s string) error {
 	svc := getService()
 	// uncomment for granular input logging
-	svc.logger.Info("Action input received", zap.Any("Action", s))
+	//svc.logger.Info("Action input received", zap.Any("Action", s))
 
 	// unmarshal serialized json into input model
 	err := json.Unmarshal([]byte(s), &svc.input)
 	if err != nil {
-		svc.logger.Fatal("failed to unmarshal input", zap.Error(err))
+		svc.logger.Error("failed to unmarshal input", zap.Error(err))
+		return err
 	}
 
 	// TODO: Implementation docs for choosing to use mutex

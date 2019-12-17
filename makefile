@@ -4,6 +4,7 @@ get_deps:
 
 test: get_deps
 	echo ### Running unit tests ###
+	cd pkg/actions
 	go test ./...
 
 fmt:
