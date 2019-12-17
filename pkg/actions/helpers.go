@@ -28,6 +28,7 @@ func updateAverage(input Input, svc Service) error {
 			Average:        float64(input.Time),
 			UnaryOpCounter: 1,
 		}
+
 		// update record with initial average
 		TempData[input.Action] = *initialAverage
 		return nil
@@ -43,8 +44,6 @@ func updateAverage(input Input, svc Service) error {
 
 		// update record with updated average
 		TempData[input.Action] = *updateAverage
-
-		//svc.logger.Info("Current data", zap.Any("TempData", TempData))
 
 		return nil
 	}

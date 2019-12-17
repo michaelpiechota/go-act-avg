@@ -7,13 +7,10 @@ test: get_deps
 	cd pkg/actions
 	go test ./...
 
-fmt:
-	go fmt ./... -v
-
 vet: get_deps
 	go vet ./...
 
-prereqs: get_deps test
+prereqs: test
 
 prep: vet prereqs
 

@@ -3,8 +3,8 @@ package actions
 // Data model for AddAction input
 // serialized JSON string -> JSON struct conversion
 type Input struct {
-	Action string `json:"action"`
-	Time   float64    `json:"time"`
+	Action string  `json:"action"`
+	Time   float64 `json:"time"`
 }
 
 // Data model for temp local data store.
@@ -16,6 +16,7 @@ type ActionData struct {
 	UnaryOpCounter int
 }
 
+// Data model for retrieving statistics
 type Stats struct {
 	Action  string  `json:"action"`
 	Average float64 `json:"average"`
