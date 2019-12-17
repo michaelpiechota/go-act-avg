@@ -6,34 +6,37 @@ import (
 )
 
 func TestGetStats(t *testing.T) {
-	var expectedGetStats = map[string]ActionData{}
-
 	// TEST CASE: No Data Test
 	t.Log("No Data Case")
 	actual := GetStats()
-	if actual == ""{
-		assert.Equal(t, "", actual)
-	}
+	assert.Equal(t, "", actual)
 
 
 	// TEST CASE: Base Case - Happy Path
 	t.Log("Base Case")
 
-	// add some data
-	TempData["run"] = ActionData{
+	TempData["jump"] = ActionData{
 		Average: 100,
 		UnaryOpCounter: 1,
 	}
 
 	actual = GetStats()
-	if actual == "" {
-		t.Error("GetStats error for base case", actual)
+	assert.Equal(t, `[{"action":"jump","average":100}]`, actual)
+
+
+	// TEST CASE: Multiple stats
+	t.Log("Multple Stats Test Case")
+
+	TempData["jump"] = ActionData{
+		Average: 100,
+		UnaryOpCounter: 1,
+	}
+	TempData["run"] = ActionData{
+		Average: 75,
+		UnaryOpCounter: 1,
 	}
 
-	assert.Equal(t, expectedGetStats, TempData)
-
-
-
-
+	actual = GetStats()
+	assert.Equal(t, `[{"action":"jump","average":100},{"action":"run","average":75}]`, actual)
 }
 
