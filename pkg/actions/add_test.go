@@ -6,7 +6,7 @@ import (
 )
 
 func TestAddAction(t *testing.T) {
-	var expected = map[string]ActionData{}
+	var expectedAddAction = map[string]ActionData{}
 
 	// TEST CASE: Base Case - Happy Path
 	t.Log("Base Case")
@@ -14,12 +14,12 @@ func TestAddAction(t *testing.T) {
 	if actual != nil{
 		t.Error("AddAction error for base case", actual)
 	}
-	// Expected data
-	expected["run"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["run"] = ActionData{
 		Average: 100,
 		UnaryOpCounter: 1,
 	}
-	assert.Equal(t, expected, TempData)
+	assert.Equal(t, expectedAddAction, TempData)
 
 
 	// TEST CASE: Base Case - Invalid Input
@@ -44,18 +44,18 @@ func TestAddAction(t *testing.T) {
 	if actual != nil{
 		t.Error("AddAction error for Type Differential test case", actual)
 	}
-	// Expected data
-	expected["jump"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["jump"] = ActionData{
 		Average: 100,
 		UnaryOpCounter: 1,
 	}
-	assert.NotEqual(t, expected, TempData)
+	assert.NotEqual(t, expectedAddAction, TempData)
 }
 
 // Note: TempData (placeholder db) data persists through test suite.
 // This is taken into account for the following tests.
 func TestAddActionUpdateAverage(t *testing.T) {
-	var expected = map[string]ActionData{}
+	var expectedAddAction = map[string]ActionData{}
 
 	// TEST CASE: Base Case (single record) Counter for Average Calculation
 	t.Log("Counter Base Case Test")
@@ -63,12 +63,12 @@ func TestAddActionUpdateAverage(t *testing.T) {
 	if actual != nil{
 		t.Error("Error with counter", actual)
 	}
-	// Expected data
-	expected["jump"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["jump"] = ActionData{
 		Average: 100,
 		UnaryOpCounter: 1,
 	}
-	assert.Equal(t, expected["jump"].UnaryOpCounter, TempData["jump"].UnaryOpCounter)
+	assert.Equal(t, expectedAddAction["jump"].UnaryOpCounter, TempData["jump"].UnaryOpCounter)
 
 
 	// TEST CASE: Counter - Multiple Records for Average Calculation
@@ -77,12 +77,12 @@ func TestAddActionUpdateAverage(t *testing.T) {
 	if actual != nil{
 		t.Error("Error with counter", actual)
 	}
-	// Expected data
-	expected["jump"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["jump"] = ActionData{
 		Average: 100,
 		UnaryOpCounter: 2,
 	}
-	assert.Equal(t, expected["jump"].UnaryOpCounter, TempData["jump"].UnaryOpCounter)
+	assert.Equal(t, expectedAddAction["jump"].UnaryOpCounter, TempData["jump"].UnaryOpCounter)
 
 
 	//// TEST CASE: Average Calculation
@@ -91,12 +91,12 @@ func TestAddActionUpdateAverage(t *testing.T) {
 	if actual != nil{
 		t.Error("Error Calculating Average", actual)
 	}
-	// Expected data
-	expected["jump"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["jump"] = ActionData{
 		Average: 107.81866666666667,
 		UnaryOpCounter: 3,
 	}
-	assert.Equal(t, expected["jump"].Average, TempData["jump"].Average)
+	assert.Equal(t, expectedAddAction["jump"].Average, TempData["jump"].Average)
 
 
 	//// TEST CASE: Negative input - Average Calculation
@@ -105,10 +105,10 @@ func TestAddActionUpdateAverage(t *testing.T) {
 	if actual != nil{
 		t.Error("Error Calculating Average with negative input", actual)
 	}
-	// Expected data
-	expected["jump"] = ActionData{
+	// expectedAddAction data
+	expectedAddAction["jump"] = ActionData{
 		Average: 50,
 		UnaryOpCounter: 3,
 	}
-	assert.Equal(t, expected["jump"].Average, TempData["jump"].Average)
+	assert.Equal(t, expectedAddAction["jump"].Average, TempData["jump"].Average)
 }
