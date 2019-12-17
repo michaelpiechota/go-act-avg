@@ -4,7 +4,7 @@ package actions
 // serialized JSON string -> JSON struct conversion
 type Input struct {
 	Action string `json:"action"`
-	Time   int    `json:"time"`
+	Time   float64    `json:"time"`
 }
 
 // Data model for temp local data store.
