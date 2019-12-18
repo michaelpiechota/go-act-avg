@@ -28,6 +28,8 @@ To run the sample main function:
 Note: "make prep" downloads dependencies and runs tests.
 
 To run tests:
+> make prep
+
 > cd pkg/actions/
 
 > go test
