@@ -14,6 +14,7 @@ func GetStats() string {
 		return ""
 	}
 
+	// if data exists, fill model
 	for action, average := range TempData {
 		svc.stats = append(svc.stats, Stats{
 			Action:  action,
@@ -21,6 +22,7 @@ func GetStats() string {
 		})
 	}
 
+	// serialize data
 	serializedStats, err := json.Marshal(svc.stats)
 	if err != nil {
 		svc.logger.Error("failed to marshal input", zap.Error(err))

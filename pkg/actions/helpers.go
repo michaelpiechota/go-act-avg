@@ -15,11 +15,11 @@ func getService() *Service {
 }
 
 // updateAverage checks record for an average based on action, updates as needed.
-// If there is no average, the current action
-// is the initial action; set average to current input time.
+// If there is no average, the current action is the initial action;
+// set average to current input time.
 // If an average exists, calculate the new average and update record.
 func updateAverage(input Input, svc Service) error {
-	// grab latest, possibly empty
+	// grab latest; possibly empty
 	average := TempData[input.Action]
 
 	// check if an average exists
