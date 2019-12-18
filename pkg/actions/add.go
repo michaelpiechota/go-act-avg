@@ -26,10 +26,6 @@ func AddAction(s string) error {
 		return err
 	}
 
-	// TODO: Implementation docs for choosing to use mutex
-	// Using a mutex to synchronize access to "TempData" map
-	// during read/write ops.
-
 	// lock mutex to prevent concurrent writes to map
 	m.Lock()
 	defer m.Unlock()
