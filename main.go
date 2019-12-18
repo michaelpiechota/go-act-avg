@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/michaelpiechota/go-act-avg/pkg/actions"
+	"fmt"
 )
 
 func main() {

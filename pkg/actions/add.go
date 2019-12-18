@@ -7,6 +7,8 @@ import (
 	"sync"
 )
 
+
+var mutex = sync.RWMutex{}
 // AddAction accepts a json serialized string of the form:
 // {"action":"string", "time":int}
 // and maintains an average time for each action.
@@ -25,15 +27,15 @@ func AddAction(s string) error {
 	// TODO: Implementation docs for choosing to use mutex
 	// Using a mutex to synchronize access to "TempData" map
 	// during read/write ops.
-	var mutex = sync.RWMutex{}
+
 	mutex.Lock()
+	defer mutex.Unlock()
 
 	error := updateAverage(svc.input, *svc)
 	if error != nil {
 		return errors.New("error calculating average")
 	}
 
-	mutex.Unlock()
 
 	return nil
 }
