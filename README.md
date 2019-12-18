@@ -63,6 +63,6 @@ I've used Makefiles heavily in CI/CD deployment pipelines and have seen great re
 
 Future TODO's
 =======
-#### Add proper data storage
-#### Add tests for concurrency
+* Add proper data storage
+* Add tests for concurrency
 
