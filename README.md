@@ -34,7 +34,7 @@ To run tests:
 
 Implementation Decisions and Future Considerations
 =======
-*Service Object Pattern*
+*Service Pattern*
 
 I've had great success using this type of (Ruby-ish) service pattern with API implementations in the past. 
 I believe this pattern helps establish clean architecture and is a great example of the benefits of the
