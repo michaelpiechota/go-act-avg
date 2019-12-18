@@ -4,9 +4,13 @@ import (
 	"encoding/json"
 	"errors"
 	"go.uber.org/zap"
+	"sync"
 )
 
-//var mutex = sync.RWMutex{}
+// mutex needed to sync state for data store
+// avoids concurrent write issues to map
+var m = sync.RWMutex{}
+
 // AddAction accepts a json serialized string of the form:
 // {"action":"string", "time":int}
 // and maintains an average time for each action.
@@ -27,8 +31,8 @@ func AddAction(s string) error {
 	// during read/write ops.
 
 	// lock mutex to prevent concurrent writes to map
-	svc.mutex.Lock()
-	defer svc.mutex.Unlock()
+	m.Lock()
+	defer m.Unlock()
 
 	error := updateAverage(svc.input, *svc)
 	if error != nil {
