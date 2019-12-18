@@ -71,4 +71,5 @@ Future TODO's
 =======
 * Add proper data storage
 * Add tests for concurrency
+* Clean up unit tests to exclude Zap logging
 
