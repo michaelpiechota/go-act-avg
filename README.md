@@ -22,9 +22,15 @@ Included in the main directory is a sample main.go.
 To run the sample main function:
 
 > make prep
+
 > go run main.go
 
 Note: "make prep" downloads dependencies and runs tests.
+
+To run tests:
+> cd pkg/actions/
+
+> go test
 
 Implementation Decisions and Future Considerations
 =======
