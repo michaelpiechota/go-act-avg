@@ -2,6 +2,7 @@ package actions
 
 import (
 	"go.uber.org/zap"
+	"log"
 )
 
 type Service struct {
@@ -32,4 +33,12 @@ func NewService() (*Service, error) {
 	}
 
 	return &svc, err
+}
+
+func getService() *Service {
+	svc, err := NewService()
+	if err != nil {
+		log.Panicf("ERROR: unable to create service - %v", err)
+	}
+	return svc
 }
