@@ -7,9 +7,14 @@ import (
 
 func main() {
 	actions.AddAction(`{"action":"jump", "time":100}`)
-	actions.AddAction(`{"action":"run", "time":75}`)
-	actions.AddAction(`{"action":"jump", "time":200}`)
-
 	getStats := actions.GetStats()
 	fmt.Println(getStats)
+
+	actions.AddAction(`{"action":"run", "time":75}`)
+	getStats2 := actions.GetStats()
+	fmt.Println(getStats2)
+
+	actions.AddAction(`{"action":"jump", "time":200}`)
+	getStats3 := actions.GetStats()
+	fmt.Println(getStats3)
 }

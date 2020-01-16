@@ -3,10 +3,19 @@ package actions
 import (
 	"encoding/json"
 	"go.uber.org/zap"
+	"sync"
 )
+
+// mutex needed to sync state for data store
+// avoids concurrent read issues to map
+var mr = sync.RWMutex{}
 
 func GetStats() string {
 	svc := getService()
+
+	// lock mutex to prevent concurrent reads to map
+	mr.RLock()
+	defer mr.RUnlock()
 
 	// check if any data exists
 	if len(TempData) == 0 {

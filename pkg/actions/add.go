@@ -9,7 +9,7 @@ import (
 
 // mutex needed to sync state for data store
 // avoids concurrent write issues to map
-var m = sync.RWMutex{}
+var mw = sync.Mutex{}
 
 // AddAction accepts a json serialized string of the form:
 // {"action":"string", "time":int}
@@ -27,8 +27,8 @@ func AddAction(s string) error {
 	}
 
 	// lock mutex to prevent concurrent writes to map
-	m.Lock()
-	defer m.Unlock()
+	mw.Lock()
+	defer mw.Unlock()
 
 	error := updateAverage(svc.input, *svc)
 	if error != nil {
