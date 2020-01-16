@@ -1,19 +1,5 @@
 package actions
 
-import (
-	"log"
-)
-
-// Helper functions
-
-func getService() *Service {
-	svc, err := NewService()
-	if err != nil {
-		log.Panicf("ERROR: unable to create service - %v", err)
-	}
-	return svc
-}
-
 // updateAverage checks record for an average based on action, updates as needed.
 // If there is no average, the current action is the initial action;
 // set average to current input time.
